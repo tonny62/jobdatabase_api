@@ -7,7 +7,12 @@ app.config['JSON_AS_ASCII'] = False
 
 @app.route('/')
 def home():
-    return "<h1>API SERVER najaaaa</h1>"
+    return "<h1>JOB DATABASE API SERVER</h1>"
+
+@app.route('/api/testpost', methods=['POST'])
+def testpost():
+    print(request.form)
+    return jsonify(request.form)
 
 @app.route('/api/getdata', methods=['POST'])
 def getdata():
@@ -21,6 +26,6 @@ def getdata():
     response = queryFactory.getData(monthfrom, monthto)
 
     if(not response):
-        return "ERROR404"
+        return "ERROR 404"
     else:
         return jsonify({"job": response})
