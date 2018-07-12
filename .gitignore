@@ -5,3 +5,4 @@ api/src/config.ini
 api/__pycache__
 api/src/__pycache__
 .DS_Store
+api/startserver.sh

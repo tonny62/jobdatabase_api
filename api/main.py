@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import json
-from src import queryFactory
+from src import queryFactory, mylogger
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -16,16 +16,22 @@ def testpost():
 
 @app.route('/api/getdata', methods=['POST'])
 def getdata():
-    datain = request.form
-    ## extract parameters
-    monthfrom = datain['startDate']
-    monthto = datain['endDate']
-    datenow = datain['currentTime']
+    try:
+        datain = request.form
+        ## extract parameters
+        monthfrom = datain['startDate']
+        monthto = datain['endDate']
+        datenow = datain['currentTime']
 
-    ## receive json response from queryfactory
-    response = queryFactory.getData(monthfrom, monthto)
+        ## receive json response from queryfactory
+        response = queryFactory.getData(monthfrom, monthto)
 
-    if(not response):
-        return "ERROR 404"
-    else:
-        return jsonify({"job": response})
+        if(not response):
+            mylogger.writelog("ERROR LINE 30 : "+str(request.form))
+            return "ERROR 404"
+        else:
+            mylogger.writelog("INCOMING REQUEST : " + str(request.form))
+            return jsonify({"job": response})
+    except:
+        mylogger.writelog("ERROR LINE 37 INVALID REQUEST : "+str(request.form))
+        return "Expecting fields name = startDate, endDate, currentTime" 
