@@ -23,8 +23,11 @@ def getdata():
         monthto = datain['endDate']
         datenow = datain['currentTime']
 
-        ## receive json response from queryfactory
-        response = queryFactory.getData(monthfrom, monthto)
+        ## receive json response from queryfactory type dictionary
+        queryData = queryFactory.getData(monthfrom, monthto)
+
+        ## create correct response JSON
+        response = queryData
 
         if(not response):
             mylogger.writelog("ERROR LINE 30 : "+str(request.form))
@@ -33,5 +36,6 @@ def getdata():
             mylogger.writelog("INCOMING REQUEST : " + str(request.form))
             return jsonify({"job": response})
     except:
-        mylogger.writelog("ERROR LINE 37 INVALID REQUEST : "+str(request.form))
-        return "Expecting fields name = startDate, endDate, currentTime" 
+        mylogger.writelog("ERROR LINE 37 INVALID REQUEST : " + 
+                str(request.form))
+        return "Expecting fields name = startDate, endDate, currentTime"
