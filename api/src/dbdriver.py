@@ -34,7 +34,10 @@ class dbDriver:
                 cursor.execute(query)
             ## craft dataframe
             header = [item if type(item) == str else item.decode() for item in cursor.column_names]
+            print(header)
             outData = pd.DataFrame(data=cursor.fetchall(), columns=header)
+
+
         except:
             ## catch some error
             outData = None
@@ -43,7 +46,7 @@ class dbDriver:
             cnx.close()
 
         ## return pandas DataFrame
-        return outData
+        return outData.to_dict(orient='records')
 
     def update(self, query, arguments=None):
         try:
