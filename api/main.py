@@ -16,17 +16,35 @@ def home():
 
 @app.route('/api/testpost', methods=['POST'])
 def testpost():
-    print(request.form)
-    return jsonify(request.form)
+    mydict = request.get_json()
+    print(mydict)
+    return mydict
 
 
 @app.route('/api/getdata', methods=['POST'])
 def getdata():
-    datain = request.form
-    ## extract parameters
-    monthfrom = datain['startDate']
-    monthto = datain['endDate']
-    datenow = datain['currentTime']
+#    datain = request.form
+#    ## extract parameters
+#    monthfrom = datain['startDate']
+#    monthto = datain['endDate']
+#    datenow = datain['currentTime']
+
+    datain = request.get_json()
+    if(datain != None):
+        try:
+            print(datain)
+            monthfrom = datain['startDate']
+            monthto = datain['endDate']
+            datenow = datain['currentTime']
+        else:
+            monthfrom = ""
+            monthto = ""
+            datenow = ""
+    else:
+        print(datain)
+        monthfrom = ""
+        monthto = ""
+        datenow = ""
 
     ## create dicts of query result
     response_data = queryFactory.getData(monthfrom, monthto)
