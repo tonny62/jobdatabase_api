@@ -36,7 +36,7 @@ def getdata():
             monthfrom = datain['startDate']
             monthto = datain['endDate']
             datenow = datain['currentTime']
-        else:
+        except:
             monthfrom = ""
             monthto = ""
             datenow = ""
