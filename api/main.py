@@ -41,7 +41,8 @@ def getdata():
             monthto = ""
             datenow = ""
     else:
-        print(datain)
+        with open('requestlog', 'a') as fout:
+            fout.write(request.get_data() + "\n")
         monthfrom = ""
         monthto = ""
         datenow = ""
