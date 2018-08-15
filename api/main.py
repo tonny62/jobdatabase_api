@@ -2,8 +2,11 @@ from flask import Flask, request, jsonify, Response
 import json
 from src import queryFactory, mylogger
 import simplejson
+from flask_cors import CORS 
+
 
 app = Flask(__name__)
+CORS(app)
 app.config['JSON_AS_ASCII'] = False
 
 
