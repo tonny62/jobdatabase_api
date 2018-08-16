@@ -1,4 +1,7 @@
-SELECT elementid, sum(count), ostarnetsoc, elementname FROM (
+SELECT
+	sum(count) AS value,
+    elementname AS 'label_EN'
+FROM (
 	SELECT ostarnet_interface.ostarnetid, occu_has_skill.ostarnetsoc, occu_has_skill.elementid, element.elementname, count.count FROM ostarnet_interface
 	LEFT JOIN occu_has_skill ON ostarnet_interface.ostarnetsoc = occu_has_skill.ostarnetsoc
 	LEFT JOIN element ON occu_has_skill.elementid = element.elementid

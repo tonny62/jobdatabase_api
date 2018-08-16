@@ -1,4 +1,8 @@
-SELECT industry.*, temp1.industrycount FROM
+SELECT
+	industrycount AS 'value',
+    industrynameEN AS 'label_EN',
+    industrynameTH AS 'label_TH'
+FROM
 (
 	SELECT industryid, count(industryid) AS industrycount
 	FROM job

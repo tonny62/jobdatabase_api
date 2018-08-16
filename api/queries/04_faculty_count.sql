@@ -1,4 +1,8 @@
-SELECT faculty.facultyid, facultynameEN,  temp3.summajor FROM
+SELECT
+	temp3.summajor  AS 'value',
+    facultynameEN AS 'label_EN',
+    facultynameTH AS 'label_TH'
+    FROM
 	(
 	SELECT facultyid, sum(majorcount) AS summajor FROM major
 	LEFT JOIN

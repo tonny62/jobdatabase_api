@@ -1,4 +1,8 @@
-SELECT region.regionid,temp2.regioncount, region.regionEN  FROM
+SELECT
+	regioncount AS 'value',
+    regionEN AS 'label_EN',
+    regionTH AS 'label_TH'
+FROM
 (
 	SELECT province.regionid, sum(temp1.provincecount) AS regioncount FROM
 	(
