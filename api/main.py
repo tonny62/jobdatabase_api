@@ -49,7 +49,7 @@ def getdata():
 
     ## create dicts of query result
     response_data = queryFactory.getData(monthfrom, monthto)
-    response_data = simplejson.dumps(response_data)  # simplejson could encode Decimal
+    response_data = simplejson.dumps(response_data, ensure_ascii=False)  # simplejson could encode Decimal
 
     ## create correct response JSON
     response = Response(response_data, mimetype='application/json')
