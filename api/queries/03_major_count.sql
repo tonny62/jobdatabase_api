@@ -1,7 +1,7 @@
 SELECT
 	count AS 'value',
     majornameEN AS 'label_EN',
-    majornameTH AS 'lable_TH'
+    majornameTH AS 'label_TH'
 FROM major
 LEFT JOIN
 	(
